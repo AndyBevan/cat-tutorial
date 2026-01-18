@@ -66,17 +66,17 @@
 
 > **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
 
-- [ ] T017 [P] [US1] Component test for TutorialCard in __tests__/components/TutorialCard.test.tsx
-- [ ] T018 [P] [US1] Integration test for homepage tutorial listing in __tests__/pages/homepage.test.tsx
+- [X] T017 [P] [US1] Component test for TutorialCard in __tests__/components/TutorialCard.test.tsx
+- [X] T018 [P] [US1] Integration test for homepage tutorial listing in __tests__/pages/homepage.test.tsx
 
 ### Implementation for User Story 1
 
-- [ ] T019 [P] [US1] Create tutorial data index and helpers in src/data/tutorials/index.ts (getTutorialBySlug, getAllTutorialSlugs)
-- [ ] T020 [P] [US1] Create cat-counting tutorial data file in src/data/tutorials/cat-counting.ts
-- [ ] T021 [US1] Create TutorialCard component in src/components/tutorial/TutorialCard.tsx
-- [ ] T022 [US1] Create homepage in src/app/page.tsx with tutorial card listing
+- [X] T019 [P] [US1] Create tutorial data index and helpers in src/data/tutorials/index.ts (getTutorialBySlug, getAllTutorialSlugs)
+- [X] T020 [P] [US1] Create cat-counting tutorial data file in src/data/tutorials/cat-counting.ts
+- [X] T021 [US1] Create TutorialCard component in src/components/tutorial/TutorialCard.tsx
+- [X] T022 [US1] Create homepage in src/app/page.tsx with tutorial card listing
 
-**Checkpoint**: Homepage functional - visitors can see available tutorials and click to navigate
+**Checkpoint**: Homepage functional - visitors can see available tutorials and click to navigate ✅
 
 ---
 
