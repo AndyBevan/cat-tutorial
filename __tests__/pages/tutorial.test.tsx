@@ -81,8 +81,8 @@ describe('Tutorial Page - Integration', () => {
       expect(screen.getByText(catCountingTutorial.steps[1].title)).toBeInTheDocument();
     });
 
-    // Step 2: Answer the quiz
-    fireEvent.click(screen.getByRole('button', { name: '3' }));
+    // Step 2: Answer the quiz (quiz options use radio role)
+    fireEvent.click(screen.getByRole('radio', { name: '3' }));
 
     await waitFor(() => {
       expect(screen.getByText(/Excellent guess!/i)).toBeInTheDocument();
@@ -110,8 +110,8 @@ describe('Tutorial Page - Integration', () => {
       expect(screen.getByText(/How many cats are upstairs/)).toBeInTheDocument();
     });
 
-    // Click a quiz option
-    fireEvent.click(screen.getByRole('button', { name: 'Impossible to know' }));
+    // Click a quiz option (quiz options use radio role)
+    fireEvent.click(screen.getByRole('radio', { name: 'Impossible to know' }));
 
     // Should show response
     await waitFor(() => {
@@ -131,8 +131,8 @@ describe('Tutorial Page - Integration', () => {
       expect(screen.getByText(catCountingTutorial.steps[1].title)).toBeInTheDocument();
     });
 
-    // Answer quiz to proceed
-    fireEvent.click(screen.getByRole('button', { name: '3' }));
+    // Answer quiz to proceed (quiz options use radio role)
+    fireEvent.click(screen.getByRole('radio', { name: '3' }));
 
     await waitFor(() => {
       const continueButtons = screen.getAllByRole('button');

@@ -108,8 +108,8 @@ describe('TutorialStep', () => {
     );
 
     expect(screen.getByText('How many cats are upstairs?')).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: '0' })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: '1' })).toBeInTheDocument();
+    expect(screen.getByRole('radio', { name: '0' })).toBeInTheDocument();
+    expect(screen.getByRole('radio', { name: '1' })).toBeInTheDocument();
   });
 
   it('shows quiz response after selecting an option', () => {
@@ -134,7 +134,7 @@ describe('TutorialStep', () => {
       />
     );
 
-    fireEvent.click(screen.getByRole('button', { name: '1' }));
+    fireEvent.click(screen.getByRole('radio', { name: '1' }));
     expect(screen.getByText('Great guess!')).toBeInTheDocument();
   });
 

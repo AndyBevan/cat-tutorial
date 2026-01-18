@@ -41,22 +41,38 @@ export function QuizElement({ element, onComplete }: QuizElementProps) {
     setShowResponse(true);
   };
 
+  const handleKeyDown = (event: React.KeyboardEvent, index: number) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      handleOptionClick(index);
+    }
+  };
+
   return (
     <div className="space-y-4">
       <h3 className="text-xl font-bold text-gray-800">{element.question}</h3>
 
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+      <div
+        className="grid grid-cols-2 gap-3 sm:grid-cols-3"
+        role="radiogroup"
+        aria-label={element.question}
+      >
         {element.options.map((option, index) => (
           <motion.button
             key={index}
             onClick={() => handleOptionClick(index)}
+            onKeyDown={(e) => handleKeyDown(e, index)}
             disabled={showResponse}
             whileHover={shouldReduceMotion ? {} : { scale: 1.05 }}
             whileTap={shouldReduceMotion ? {} : { scale: 0.95 }}
+            role="radio"
+            aria-checked={selectedOption === index}
+            tabIndex={showResponse ? -1 : 0}
             className={`
               px-4 py-3 rounded-xl font-semibold text-lg
               border-3 transition-colors duration-200
               min-w-[44px] min-h-[44px]
+              focus:outline-none focus:ring-4 focus:ring-purple-300
               ${
                 selectedOption === index
                   ? 'bg-purple-500 text-white border-purple-700'
@@ -113,6 +129,13 @@ export function ClickableAreaElement({ element, onComplete }: ClickableAreaEleme
     }
   };
 
+  const handleKeyDown = (event: React.KeyboardEvent) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      handleClick();
+    }
+  };
+
   const progress = Math.min((clickCount / element.targetClicks) * 100, 100);
 
   return (
@@ -121,12 +144,14 @@ export function ClickableAreaElement({ element, onComplete }: ClickableAreaEleme
 
       <motion.button
         onClick={handleClick}
+        onKeyDown={handleKeyDown}
         disabled={isCompleted}
         whileHover={shouldReduceMotion || isCompleted ? {} : { scale: 1.02 }}
         whileTap={shouldReduceMotion || isCompleted ? {} : { scale: 0.98 }}
         className={`
           w-full p-8 rounded-3xl border-4 text-center
           transition-colors duration-200
+          focus:outline-none focus:ring-4 focus:ring-purple-300
           ${
             isCompleted
               ? 'bg-green-100 border-green-400 cursor-default'
@@ -134,6 +159,7 @@ export function ClickableAreaElement({ element, onComplete }: ClickableAreaEleme
           }
         `}
         aria-label={element.instruction}
+        aria-live="polite"
       >
         <div className="text-4xl mb-2">
           {isCompleted ? '✅' : '🐱'}

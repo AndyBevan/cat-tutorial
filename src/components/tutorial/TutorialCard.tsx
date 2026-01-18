@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import Link from 'next/link';
 import type { Tutorial } from '@/data/tutorials/types';
 
@@ -18,9 +18,11 @@ const difficultyColors = {
 };
 
 export function TutorialCard({ tutorial, href, onClick }: TutorialCardProps) {
+  const shouldReduceMotion = useReducedMotion();
+
   const content = (
     <motion.article
-      whileHover={{ scale: 1.02, y: -4 }}
+      whileHover={shouldReduceMotion ? {} : { scale: 1.02, y: -4 }}
       transition={{ type: 'spring' as const, stiffness: 300 }}
       className="
         bg-white rounded-3xl shadow-lg p-6

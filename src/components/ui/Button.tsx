@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, type HTMLMotionProps } from 'framer-motion';
+import { motion, useReducedMotion, type HTMLMotionProps } from 'framer-motion';
 import { forwardRef } from 'react';
 
 export interface ButtonProps
@@ -30,11 +30,13 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     { className = '', variant = 'primary', size = 'md', children, ...props },
     ref
   ) => {
+    const shouldReduceMotion = useReducedMotion();
+
     return (
       <motion.button
         ref={ref}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
+        whileHover={shouldReduceMotion ? {} : { scale: 1.05 }}
+        whileTap={shouldReduceMotion ? {} : { scale: 0.95 }}
         className={`
           font-bold transition-colors duration-200
           focus:outline-none focus:ring-4 focus:ring-yellow-300

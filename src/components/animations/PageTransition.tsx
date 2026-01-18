@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, type Variants } from 'framer-motion';
+import { motion, useReducedMotion, type Variants } from 'framer-motion';
 import { ReactNode } from 'react';
 
 export interface PageTransitionProps {
@@ -31,10 +31,18 @@ const pageVariants: Variants = {
   },
 };
 
+const reducedMotionVariants: Variants = {
+  initial: { opacity: 0 },
+  animate: { opacity: 1, transition: { duration: 0.1 } },
+  exit: { opacity: 0, transition: { duration: 0.1 } },
+};
+
 export function PageTransition({ children, className = '' }: PageTransitionProps) {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <motion.div
-      variants={pageVariants}
+      variants={shouldReduceMotion ? reducedMotionVariants : pageVariants}
       initial="initial"
       animate="animate"
       exit="exit"

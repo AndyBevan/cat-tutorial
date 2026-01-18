@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 
 export interface ProgressIndicatorProps {
   currentStep: number;
@@ -13,6 +13,7 @@ export function ProgressIndicator({
   totalSteps,
   showPercentage = false,
 }: ProgressIndicatorProps) {
+  const shouldReduceMotion = useReducedMotion();
   const percentage = Math.round((currentStep / totalSteps) * 100);
 
   return (
@@ -33,9 +34,9 @@ export function ProgressIndicator({
               role="listitem"
               data-completed={isCompleted.toString()}
               data-current={isCurrent.toString()}
-              initial={{ scale: 0.8, opacity: 0 }}
+              initial={shouldReduceMotion ? { opacity: 1 } : { scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              transition={{ delay: index * 0.05 }}
+              transition={shouldReduceMotion ? {} : { delay: index * 0.05 }}
               className={`
                 w-4 h-4 rounded-full border-2 transition-all duration-300
                 ${
