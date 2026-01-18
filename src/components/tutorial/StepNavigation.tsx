@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { Button } from '@/components/ui/Button';
 
 export interface StepNavigationProps {
@@ -20,6 +20,7 @@ export function StepNavigation({
   canComplete = false,
   onComplete,
 }: StepNavigationProps) {
+  const shouldReduceMotion = useReducedMotion();
   const isFirstStep = currentStep === 1;
   const isLastStep = currentStep === totalSteps;
 
@@ -35,7 +36,7 @@ export function StepNavigation({
     <motion.nav
       role="navigation"
       aria-label="Tutorial navigation"
-      initial={{ opacity: 0, y: 20 }}
+      initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       className="flex flex-col items-center gap-4"
     >
