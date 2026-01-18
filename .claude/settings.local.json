@@ -4,7 +4,16 @@
       "Bash(git fetch:*)",
       "Bash(ls:*)",
       "Bash(pwsh -Command \".specify/scripts/powershell/create-new-feature.ps1:*)",
-      "Bash(powershell -ExecutionPolicy Bypass -File:*)"
+      "Bash(powershell -ExecutionPolicy Bypass -File:*)",
+      "Skill(speckit.plan)",
+      "Bash(pwsh -NoProfile -Command \".specify/scripts/powershell/setup-plan.ps1 -Json\")",
+      "WebSearch",
+      "WebFetch(domain:www.imcorfitz.com)",
+      "WebFetch(domain:motion.dev)",
+      "WebFetch(domain:dev.to)",
+      "WebFetch(domain:joelolawanle.com)",
+      "WebFetch(domain:www.hectane.com)",
+      "Bash(pwsh -NoProfile -Command \".specify/scripts/powershell/update-agent-context.ps1 -AgentType claude\")"
     ]
   }
 }
