@@ -1,50 +1,113 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+SYNC IMPACT REPORT
+==================
+Version change: N/A → 1.0.0 (initial ratification)
+Modified principles: N/A (initial)
+Added sections:
+  - Core Principles (3 principles)
+  - Technical Standards
+  - Development Workflow
+  - Governance
+Removed sections: N/A (initial)
+Templates validated:
+  - .specify/templates/plan-template.md ✅ (Constitution Check section compatible)
+  - .specify/templates/spec-template.md ✅ (requirements format compatible)
+  - .specify/templates/tasks-template.md ✅ (phase structure compatible)
+Follow-up TODOs: None
+-->
+
+# Cat Tutorial Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Code Quality
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+All code MUST be clean, readable, and maintainable. This principle is non-negotiable.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+- Code MUST follow established conventions for React (frontend) and .NET (backend)
+- Functions and methods MUST have a single responsibility
+- Variable and function names MUST be descriptive and self-documenting
+- Code duplication MUST be eliminated through appropriate abstractions
+- All public APIs MUST be documented with clear parameter and return type descriptions
+- Code reviews MUST verify adherence to these standards before merge
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+**Rationale**: A tutorial project serves as an educational reference. Poor code quality
+undermines the learning experience and creates technical debt that compounds over time.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### II. Testing
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+All features MUST have appropriate test coverage. Testing is the foundation of reliable software.
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+- Unit tests MUST cover all business logic and service methods
+- Integration tests MUST verify API endpoints and database interactions
+- Frontend components MUST have component tests for user interactions
+- Tests MUST be written before or alongside implementation (TDD encouraged)
+- Test coverage MUST NOT decrease with new changes
+- All tests MUST pass before code can be merged to main branch
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+**Rationale**: Tests provide confidence in refactoring, catch regressions early, and serve
+as living documentation of expected behavior.
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+### III. Simplicity
+
+Solutions MUST be as simple as possible, but no simpler. Complexity is the enemy of maintainability.
+
+- YAGNI (You Aren't Gonna Need It): Do not implement features until they are needed
+- KISS (Keep It Simple, Stupid): Prefer straightforward solutions over clever ones
+- Premature optimization MUST be avoided; measure before optimizing
+- Dependencies MUST be justified; prefer fewer, well-maintained libraries
+- Architecture decisions MUST be documented when deviating from simple patterns
+- If a junior developer cannot understand the code, it is too complex
+
+**Rationale**: Complex code is harder to debug, test, and maintain. Simple code is easier
+to reason about and less prone to bugs.
+
+## Technical Standards
+
+The Cat Tutorial project uses the following technology stack:
+
+- **Frontend**: React with TypeScript
+- **Backend**: .NET 10 (C#)
+- **API Communication**: RESTful APIs with JSON
+- **Code Style**: ESLint/Prettier (frontend), .NET conventions (backend)
+
+All technical decisions MUST align with these standards unless explicitly justified and
+documented in the relevant plan.md file.
+
+## Development Workflow
+
+All development MUST follow the SpecKit workflow:
+
+1. **Specification First**: Features begin with a clear spec.md defining WHAT and WHY
+2. **Planning Before Implementation**: Technical decisions documented in plan.md
+3. **Task-Driven Development**: Work organized in tasks.md with clear dependencies
+4. **Incremental Delivery**: User stories implemented and tested independently
+5. **Documentation**: Changes reflected in appropriate documentation
+
+Pull requests MUST:
+- Reference the related feature specification
+- Include appropriate tests
+- Pass all CI checks
+- Receive at least one approval before merge
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+This constitution represents the foundational principles for the Cat Tutorial project.
+All development decisions, code reviews, and architectural choices MUST comply with
+these principles.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Amendment Process**:
+1. Proposed amendments MUST be documented with rationale
+2. Amendments require explicit approval from project maintainers
+3. Version number MUST be updated following semantic versioning:
+   - MAJOR: Principle removal or fundamental redefinition
+   - MINOR: New principle or section added
+   - PATCH: Clarifications and wording improvements
+4. All dependent templates MUST be reviewed for consistency after amendments
+
+**Compliance**:
+- All pull requests MUST pass constitution compliance review
+- Violations MUST be flagged as CRITICAL and resolved before merge
+- Exceptions require documented justification and maintainer approval
+
+**Version**: 1.0.0 | **Ratified**: 2025-01-18 | **Last Amended**: 2025-01-18
