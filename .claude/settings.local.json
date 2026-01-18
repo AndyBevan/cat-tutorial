@@ -1,6 +1,7 @@
 {
   "permissions": {
     "allow": [
+      "Bash(*)",	
       "Bash(git fetch:*)",
       "Bash(ls:*)",
       "Bash(pwsh -Command \".specify/scripts/powershell/create-new-feature.ps1:*)",
