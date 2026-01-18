@@ -3,7 +3,8 @@
     "allow": [
       "Bash(git fetch:*)",
       "Bash(ls:*)",
-      "Bash(pwsh -Command \".specify/scripts/powershell/create-new-feature.ps1:*)"
+      "Bash(pwsh -Command \".specify/scripts/powershell/create-new-feature.ps1:*)",
+      "Bash(powershell -ExecutionPolicy Bypass -File:*)"
     ]
   }
 }

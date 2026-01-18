@@ -92,11 +92,13 @@ The website structure supports adding new cat tutorials in the future without ma
 - **FR-009**: System MUST be accessible without any login or authentication
 - **FR-010**: System MUST work on desktop and mobile browsers
 - **FR-011**: System MUST support adding additional tutorials in the future through a consistent structure
+- **FR-012**: System MUST support interactive elements within tutorial steps including clickable components, buttons, and simple response-based interactions
+- **FR-013**: System MUST include rich animations: page transitions, character animations (cats), and celebration effects for tutorial completion
 
 ### Key Entities
 
 - **Tutorial**: A collection of steps that form a complete training session. Has a title, description, and ordered list of steps.
-- **Tutorial Step**: A single page of content within a tutorial. Has a step number, title, and content (text, possibly images).
+- **Tutorial Step**: A single page of content within a tutorial. Has a step number, title, and content supporting text, images, and interactive clickable components (e.g., buttons, clickable areas, simple quizzes).
 - **Cat**: The subject of tutorials. For the counting tutorial, there are 3 black cats that may be upstairs or in the basement.
 
 ## Success Criteria *(mandatory)*
@@ -110,12 +112,26 @@ The website structure supports adding new cat tutorials in the future without ma
 - **SC-005**: Visitors who start the Cat Counting tutorial can reach the completion screen by following the provided navigation
 - **SC-006**: The website successfully delivers the comedic premise, evidenced by the whimsical tone being consistent across all visible content
 
+## Clarifications
+
+### Session 2026-01-18
+
+- Q: What technology stack should be used for building the static site? → A: React/Next.js static export
+- Q: What content types should tutorial steps support? → A: Interactive elements (text, images, plus clickable/interactive components)
+- Q: What visual style/aesthetic should the website have? → A: Colorful/bold (bright colors, large typography, cartoon-ish feel)
+- Q: Where should the static site be hosted/deployed? → A: GitHub Pages
+- Q: What level of animation should the site include? → A: Rich (full animated sequences, character animations, elaborate interactions)
+
 ## Assumptions
 
 - The website is intended as a lighthearted joke for friends/family, not a commercial product
+- Tech stack: React with Next.js static export for component-based architecture and easy deployment
 - No user data persistence is required (no accounts, no saved progress, no analytics)
 - The three cats referenced are real cats owned by the site creator
 - "Upstairs" means main floor(s) of the house; "basement" is downstairs
 - The humorous tone should be family-friendly and inoffensive
+- Visual design: Colorful/bold aesthetic with bright colors, large typography, and a cartoon-ish feel to match the whimsical theme
+- Animation level: Rich animations including animated sequences, character animations, and elaborate interaction feedback
 - Initial launch includes only the Cat Counting tutorial; additional tutorials may be added later
 - No backend/server-side logic is required - the site can be fully static
+- Deployment target: GitHub Pages (requires Next.js static export configuration)
