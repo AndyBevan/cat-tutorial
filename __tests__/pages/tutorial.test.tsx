@@ -10,6 +10,17 @@ jest.mock('react-confetti-explosion', () => {
   };
 });
 
+// Mock Next.js navigation hooks for deep linking support
+const mockReplace = jest.fn();
+jest.mock('next/navigation', () => ({
+  useSearchParams: () => new URLSearchParams(),
+  useRouter: () => ({
+    replace: mockReplace,
+    push: jest.fn(),
+  }),
+  usePathname: () => '/tutorials/cat-counting',
+}));
+
 const renderWithMotion = (component: React.ReactElement) => {
   return render(
     <MotionConfig reducedMotion="always">{component}</MotionConfig>

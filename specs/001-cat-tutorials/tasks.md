@@ -141,15 +141,15 @@
 
 > **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
 
-- [ ] T038 [P] [US4] Unit test for tutorial data helpers (getTutorialBySlug, getAllTutorialSlugs) in __tests__/hooks/tutorials.test.ts
+- [X] T038 [P] [US4] Unit test for tutorial data helpers (getTutorialBySlug, getAllTutorialSlugs) in __tests__/hooks/tutorials.test.ts
 
 ### Implementation for User Story 4
 
-- [ ] T039 [US4] Create custom 404 page with cat-themed message in src/app/not-found.tsx
-- [ ] T040 [US4] Add deep linking support via URL query params for tutorial steps in src/app/tutorials/[slug]/page.tsx
-- [ ] T041 [US4] Document tutorial addition pattern in code comments in src/data/tutorials/index.ts
+- [X] T039 [US4] Create custom 404 page with cat-themed message in src/app/not-found.tsx
+- [X] T040 [US4] Add deep linking support via URL query params for tutorial steps in src/app/tutorials/[slug]/page.tsx
+- [X] T041 [US4] Document tutorial addition pattern in code comments in src/data/tutorials/index.ts
 
-**Checkpoint**: Architecture complete - future tutorials can be added by following established pattern
+**Checkpoint**: Architecture complete - future tutorials can be added by following established pattern ✅
 
 ---
 

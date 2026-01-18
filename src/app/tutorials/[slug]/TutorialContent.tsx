@@ -1,5 +1,7 @@
 'use client';
 
+import { useEffect, useCallback } from 'react';
+import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 import { AnimatePresence } from 'framer-motion';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
@@ -15,17 +17,61 @@ interface TutorialContentProps {
   tutorial: Tutorial;
 }
 
+/**
+ * Parses the step number from URL query params.
+ * Returns 1 if invalid or out of range.
+ */
+function parseStepFromUrl(stepParam: string | null, totalSteps: number): number {
+  if (!stepParam) return 1;
+  const step = parseInt(stepParam, 10);
+  if (isNaN(step) || step < 1 || step > totalSteps) return 1;
+  return step;
+}
+
 export function TutorialContent({ tutorial }: TutorialContentProps) {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
+
+  // Parse initial step from URL query param (e.g., ?step=2)
+  const initialStep = parseStepFromUrl(
+    searchParams.get('step'),
+    tutorial.steps.length
+  );
+
   const {
     progress,
     currentStepData,
     goToNext,
     goToPrevious,
+    goToStep,
     complete,
-    canGoPrevious,
   } = useTutorialProgress({
     tutorial,
+    initialStep,
   });
+
+  // Update URL when step changes (shallow update, no navigation)
+  const updateUrlStep = useCallback(
+    (step: number) => {
+      const params = new URLSearchParams(searchParams.toString());
+      if (step === 1) {
+        params.delete('step');
+      } else {
+        params.set('step', step.toString());
+      }
+      const newUrl = params.toString() ? `${pathname}?${params}` : pathname;
+      router.replace(newUrl, { scroll: false });
+    },
+    [pathname, router, searchParams]
+  );
+
+  // Sync URL with current step
+  useEffect(() => {
+    if (!progress.isCompleted) {
+      updateUrlStep(progress.currentStep);
+    }
+  }, [progress.currentStep, progress.isCompleted, updateUrlStep]);
 
   return (
     <div className="flex min-h-screen flex-col">
