@@ -6,6 +6,8 @@ import { Footer } from '@/components/layout/Footer';
 import { PageTransition } from '@/components/animations/PageTransition';
 import { TutorialStep } from '@/components/tutorial/TutorialStep';
 import { CompletionCertificate } from '@/components/tutorial/CompletionCertificate';
+import { ProgressIndicator } from '@/components/ui/ProgressIndicator';
+import { StepNavigation } from '@/components/tutorial/StepNavigation';
 import { useTutorialProgress } from '@/hooks/useTutorialProgress';
 import type { Tutorial } from '@/data/tutorials';
 
@@ -41,22 +43,11 @@ export function TutorialContent({ tutorial }: TutorialContentProps) {
               {/* Progress indicator */}
               {!progress.isCompleted && (
                 <div className="mt-4">
-                  <div className="flex items-center justify-between text-sm text-gray-600 mb-2">
-                    <span>
-                      Step {progress.currentStep} of {progress.totalSteps}
-                    </span>
-                    <span>
-                      {Math.round((progress.currentStep / progress.totalSteps) * 100)}%
-                    </span>
-                  </div>
-                  <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
-                    <div
-                      className="h-full bg-gradient-to-r from-purple-500 to-pink-500 transition-all duration-300"
-                      style={{
-                        width: `${(progress.currentStep / progress.totalSteps) * 100}%`,
-                      }}
-                    />
-                  </div>
+                  <ProgressIndicator
+                    currentStep={progress.currentStep}
+                    totalSteps={progress.totalSteps}
+                    showPercentage
+                  />
                 </div>
               )}
             </div>
@@ -85,27 +76,15 @@ export function TutorialContent({ tutorial }: TutorialContentProps) {
 
               {/* Navigation buttons (only show when not completed and not on button-controlled steps) */}
               {!progress.isCompleted && !currentStepData.interactiveElement && (
-                <div className="mt-8 flex justify-between">
-                  <button
-                    onClick={goToPrevious}
-                    disabled={!canGoPrevious}
-                    className={`
-                      px-6 py-3 rounded-xl font-semibold
-                      ${
-                        canGoPrevious
-                          ? 'bg-gray-200 hover:bg-gray-300 text-gray-800'
-                          : 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                      }
-                    `}
-                  >
-                    ← Previous
-                  </button>
-                  <button
-                    onClick={goToNext}
-                    className="px-6 py-3 rounded-xl font-semibold bg-purple-500 hover:bg-purple-600 text-white"
-                  >
-                    Next →
-                  </button>
+                <div className="mt-8">
+                  <StepNavigation
+                    currentStep={progress.currentStep}
+                    totalSteps={progress.totalSteps}
+                    onPrevious={goToPrevious}
+                    onNext={goToNext}
+                    canComplete={progress.currentStep === progress.totalSteps}
+                    onComplete={complete}
+                  />
                 </div>
               )}
 
